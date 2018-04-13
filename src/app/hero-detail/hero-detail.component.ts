@@ -13,7 +13,7 @@ export class HeroDetailComponent implements OnInit {
 
   // The hero property must be an Input property, annotated with the @Input() decorator, because the external HeroesComponent will bind to
   @Input() hero: Hero;
-  
+
   constructor(
     private route: ActivatedRoute,
     private heroService: HeroService,
@@ -32,5 +32,10 @@ export class HeroDetailComponent implements OnInit {
 
   goBack(): void {
     this.location.back();
+  }
+
+  save(): void {
+    this.heroService.updateHero(this.hero)
+      .subscribe(() => this.goBack());
   }
 }

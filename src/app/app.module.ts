@@ -14,6 +14,10 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { HeroService } from './hero.service';
 import { MessageService } from './message.service';
 
+// In memory api module
+import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { InMemoryDataService } from './in-memory-data.service';
+import { HeroSearchComponent } from './hero-search/hero-search.component';
 
 
 @NgModule({
@@ -22,13 +26,17 @@ import { MessageService } from './message.service';
     HeroesComponent,
     HeroDetailComponent,
     MessagesComponent,
-    DashboardComponent
+    DashboardComponent,
+    HeroSearchComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     AppRoutingModule,
     HttpClientModule,
+    HttpClientInMemoryWebApiModule.forRoot(
+      InMemoryDataService, {dataEncapsulation: false }
+    ),
   ],
   providers: [
     HeroService,
